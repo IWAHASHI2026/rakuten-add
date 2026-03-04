@@ -76,6 +76,11 @@ const App = {
         throw new Error('キーワード別レポートとして選択されたファイルは、商品別レポートのフォーマットです。ファイルの選択を確認してください');
       }
 
+      // 集計期間の一致チェック
+      if (itemResult.period && keywordResult.period && itemResult.period !== keywordResult.period) {
+        throw new Error(`商品別レポートとキーワード別レポートの集計期間が異なります。\n商品別: ${itemResult.period}\nキーワード別: ${keywordResult.period}`);
+      }
+
       // ルール取得
       const rules = UI.collectRulesFromUI();
       const minBid = Number(document.getElementById('min-bid').value) || DEFAULT_MIN_BID;

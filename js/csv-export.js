@@ -5,7 +5,7 @@ const CsvExport = {
     const lines = [];
     lines.push('コントロールカラム,商品管理番号,商品CPC');
     for (const row of results) {
-      lines.push(',' + row.id + ',' + row.newBid);
+      lines.push('u,' + row.id + ',' + row.newBid);
     }
     return lines.join('\r\n');
   },

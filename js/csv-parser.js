@@ -85,6 +85,11 @@ const CsvParser = {
       throw new Error('データが見つかりません');
     }
 
+    // 5行目（index 4）から集計期間を抽出
+    const periodLine = this.parseCSVLine(lines[4])[0] || '';
+    const periodMatch = periodLine.match(/集計期間:\s*(.+)/);
+    const period = periodMatch ? periodMatch[1].trim() : '';
+
     const headerLine = lines[6];
     const headers = this.parseCSVLine(headerLine);
 
@@ -134,6 +139,6 @@ const CsvParser = {
       throw new Error('データが見つかりません');
     }
 
-    return { type, headers, data, warnings };
+    return { type, headers, data, warnings, period };
   }
 };
